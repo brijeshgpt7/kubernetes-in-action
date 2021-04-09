@@ -9,4 +9,4 @@ spec:
   ingress:
   - from:
     - ipBlock:
-        cidr: 192.168.1.0/24
+        cidr: 192.168.1.0/24 # IPs in the 192.168.1.1 to .255 range

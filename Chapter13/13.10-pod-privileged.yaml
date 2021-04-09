@@ -1,0 +1,2 @@
+kubectl exec -it pod-privileged ls /dev
+

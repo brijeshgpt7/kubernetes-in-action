@@ -27,4 +27,4 @@ spec:
       readOnly: false
   volumes:
   - name: shared-volume
-    emptyDir:
+    emptyDir: {}

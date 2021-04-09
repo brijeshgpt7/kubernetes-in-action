@@ -1,0 +1,1 @@
+kubectl exec -it pod-with-defaults ls /dev

@@ -1,0 +1,21 @@
+1: VIM
+edit ~/.vimrc
+set tabstop=2       # use two space for tab not default 8 spaces
+set expandtab       # insert spaces for tabs
+set shiftwidth=2    # apply tab on multiple selected lines
+set number
+
+2: Env Variable
+export do="--dry-run=client -o=yaml"
+
+3: Alias
+alias k=kubectl
+alias kn='kubectl config set-context --current --namespace '
+
+4: https://stackoverflow.com/a/59752672/3098330
+Context doesn't create new users/clusters. A context simply sets a new mapping that makes switching easier between multiple clusters.
+k config use-context minikube
+
+
+Question: Create three namespace and ckad, cks, cka and create a resource
+Question: Crate a Deployment deploy01 from Image busybox resource limit on CPU 200i Memory 5Mi and request on CPU 100i and Memory 1Mi

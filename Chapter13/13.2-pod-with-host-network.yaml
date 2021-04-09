@@ -1,0 +1,1 @@
+kubectl exec pod-with-host-network ifconfig

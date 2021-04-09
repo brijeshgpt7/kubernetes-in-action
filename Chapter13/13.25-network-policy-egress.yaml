@@ -4,9 +4,9 @@ metadata:
   name: egress-net-policy
 spec:
   podSelector:
-    matchLabels:
+    matchLabels: # This policy applies to pods with the app=webserver label.
       app: webserver
-  egress:
+  egress: # Webserver pods may only connect to pods with the app=database label.
   - to:
     - podSelector:
         matchLabels:

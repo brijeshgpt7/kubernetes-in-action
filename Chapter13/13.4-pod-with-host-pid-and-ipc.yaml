@@ -1,3 +1,6 @@
+# By setting the hostIPC property to true, processes in the pod’s containers
+# can also communicate with all the other processes running on the node,
+# through Inter-Process Communication.
 apiVersion: v1
 kind: Pod
 metadata:
