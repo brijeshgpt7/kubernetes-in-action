@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubia
+spec:
+  # you want all requests made by a certain client to be redirected to the same pod every time,
+  # you can set the service’s sessionAffinity property to ClientIP
+  sessionAffinity: ClientIP
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: kubia
+

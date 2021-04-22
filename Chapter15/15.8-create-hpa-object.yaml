@@ -1,0 +1,35 @@
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: php-apache
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kubia
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+    - type: Object
+      object:
+        describedObject:
+          apiVersion: networking.k8s.io/v1beta1
+          kind: Ingress
+          name: main-route
+        metric:
+          name: requests-per-second
+        target:
+          type: Value
+          value: 2k
+    - type: Object
+      object:
+        target:
+          type:
+        describedObject:
+          kind:
+          name:
+        metric:
+          name: http_requests
+          selector:
+            matchLabels:
+              verb: GET

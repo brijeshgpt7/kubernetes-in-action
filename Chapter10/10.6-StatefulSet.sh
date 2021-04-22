@@ -1,0 +1,1 @@
+kubectl get po kubia-0 -o yaml

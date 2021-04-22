@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubia
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: kubia
+
+# ENV Variable SVC name convention <svc>.default.svc.cluster.local
+# in thi example kubia.default.svc.cluster.local
+
+### Valid SVC Name
+# in thi example kubia.default.svc.cluster.local
+# in thi example kubia.default
+# in thi example kubia

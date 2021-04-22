@@ -1,10 +1,53 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: kubia-gpu
+  name: po-with-multiple-container
 spec:
-  nodeSelector:
-    gpu: "true"
   containers:
-  - image: luksa/kubia
-    name: kubia
+  - image: redis:5.0.4
+    name: redis-container
+
+  - image: nginx:latest
+    name: webserver-container
+    ports:
+      - containerPort: 80
+
+  - image: busybox
+    name: busybox-container
+    command: [ "/bin/bash", "-c", "--" ]
+    args: [ "while true; do sleep 30; done;" ]
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: po-with-multiple-container
+spec:
+  containers:
+    - image: redis:5.0.4
+      name: redis-container
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: po-with-multiple-container
+spec:
+  containers:
+    - image: nginx:latest
+      name: webserver-container
+      ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: po-with-multiple-container
+spec:
+  containers:
+    - image: busybox
+      name: busybox-container
+      command: [ "/bin/bash", "-c", "--" ]
+      args: [ "while true; do sleep 30; done;" ]

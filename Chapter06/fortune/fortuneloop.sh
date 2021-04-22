@@ -4,8 +4,8 @@ mkdir /var/htdocs
 
 while :
 do
-  echo $(date) Writing fortune to /var/htdocs/index.html
-  /usr/games/fortune > /var/htdocs/index.html
+  echo $(date) Writing date to /var/log/applogs
+  echo $(date) > /var/log/applogs
   sleep 10
 done
 

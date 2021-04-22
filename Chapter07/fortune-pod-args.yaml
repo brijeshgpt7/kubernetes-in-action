@@ -23,3 +23,34 @@ spec:
   - name: html
     emptyDir: {}
 
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: nginx-pod
+  name: nginx-pod
+spec:
+  containers:
+    - env:
+        - name: TESTTT
+          valueFrom:
+            secretKeyRef:
+              name: fruit
+              key: apple
+      image: nginx
+      volumeMounts:
+        - name: redis-storage
+          mountPath: /data/redis
+      name: nginx-pod
+      resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+  volumes:
+    - name: redis-storage
+      emptyDir: {}
+
+
+
+
+

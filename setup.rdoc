@@ -1,9 +1,9 @@
 1: VIM
 edit ~/.vimrc
 set tabstop=2       # use two space for tab not default 8 spaces
-set expandtab       # insert spaces for tabs
 set shiftwidth=2    # apply tab on multiple selected lines
-set number
+set expandtab       # insert spaces for tabs
+
 
 2: Env Variable
 export do="--dry-run=client -o=yaml"
@@ -17,5 +17,51 @@ Context doesn't create new users/clusters. A context simply sets a new mapping t
 k config use-context minikube
 
 
-Question: Create three namespace and ckad, cks, cka and create a resource
-Question: Crate a Deployment deploy01 from Image busybox resource limit on CPU 200i Memory 5Mi and request on CPU 100i and Memory 1Mi
+Debugging
+
+* Debugging Pods.
+* Debugging Replication Controller.
+* Debugging Services
+
+* Debugging Pods
+    * Check the current state of the Pod and recent events with the following command:
+        * k describe po <pod-name>
+    * Pod is in pending state
+    * Pod is in waiting state
+    * Pod is crash loop backing or in an unhealthy state
+    * Pod is scheduled but Not running as expected
+
+* Debugging Replication Controller
+    * operation will be sanme as pod
+
+* Debugging Services
+    * Verify there are endpoints for services. You can do this by:
+        * kubectl get endpoints ${SERVICE_NAME}
+    * kubectl get pods --selector=app=frontend
+
+#####################
+#####################
+
+Question 3
+Create a Pod with the name liveness-test in the default namespace and configure Liveness Probe like the following:-
+
+You can use any container image to create the Pod
+Liveness Probe must be configured to use the following custom command cat /tmp/healthy
+The health-check should start after 20 secs of the container start
+The health-check should be getting checked in every 15 secs
+
+https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+
+
+############################################
+Pod mai ENV add karna (When Image is already there)
+
+Sequence
+
+Pod
+    Container
+        ENV
+        volumeMounts
+    Volumes
+############################################
+############################################

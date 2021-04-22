@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: kubia
+spec:
+  rules:
+    - host: foo.example.com
+      http:
+        paths:
+          - path: / # Requests for foo.example.com will be routed to service foo.
+            backend:
+              serviceName: foo
+              servicePort: 80
+    - host: bar.example.com
+      http:
+        paths:
+          - path: / # Requests for bar.example.com will be routed to service bar.
+            backend:
+              serviceName: bar
+              servicePort: 80
+

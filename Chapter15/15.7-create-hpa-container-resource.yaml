@@ -1,0 +1,19 @@
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: php-apache
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kubia
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+    - type: ContainerResource
+      containerResource:
+        name: nodejs-container-name
+        container: nodejs
+        target:
+          type: Utilization
+          averageUtilization: 60
