@@ -23,21 +23,3 @@ spec:
   - name: html
     emptyDir: {}
 
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: logpod
-  namespace: default
-spec:
-  containers:
-    - name: c1
-      image: k8s.gcr.io/busybox
-      command: [ "/bin/sh", "-c", "while true; do echo $(date) > /var/log/applogs; sleep 2;done"]
-
-      volumeMounts:
-        - name: voldb
-          mountPath: /var/log
-  volumes:
-    - name: voldb
-      emptyDir: {}
