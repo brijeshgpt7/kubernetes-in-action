@@ -7,6 +7,12 @@ spec:
   - image: luksa/kubia
     name: kubia
     ports:
-    - containerPort: 8080
-      hostPort: 9000
+    - containerPort: 8080 # The container can be reached on port 8080 of the pod’s IP.
+      hostPort: 9000 # It can also be reached on port 9000 of the node it’s deployed on.
       protocol: TCP
+
+
+# The hostPort feature is primarily used for exposing system services,
+#  which are deployed to every node using DaemonSets. Initially, people also
+#  used it to ensure two replicas of the same pod were never scheduled to the
+#  same node, but now you have a better way of achieving this "anti-affinity" Ch-16
