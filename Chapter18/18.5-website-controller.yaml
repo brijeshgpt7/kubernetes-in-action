@@ -1,0 +1,44 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: website-controller
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: website-controller
+      labels:
+        app: website-controller
+    spec:
+      serviceAccountName: website-controller
+      containers:
+      - name: main
+        image: luksa/website-controller
+      - name: proxy
+        image: luksa/kubectl-proxy:1.6.2
+
+---
+
+# Then Create ServiceAccount
+kubectl create serviceaccount website-controller
+  
+# Then Create clusterrolebinding
+kubectl create clusterrolebinding website-controller --clusterrole=cluster-admin --serviceaccount=default:website-controller
+
+# Once you have the ServiceAccount and ClusterRoleBinding in place,
+# you can deploy the controller’s Deployment which is the current file
+
+# then kubectl create -f kubia-website.yaml "18.3-kubia-website.yaml"
+
+# Very Very Important Now, let’s check the controller’s logs
+
+# kubectl logs website-controller-2429717411-q43zs -c main
+#  2017/02/26 16:54:41 website-controller started.
+#  2017/02/26 16:54:47 Received watch event: ADDED: kubia: https://github.c...
+#  2017/02/26 16:54:47 Creating services with name kubia-website in namespa...
+#  2017/02/26 16:54:47 Response status: 201 Created
+#  2017/02/26 16:54:47 Creating deployments with name kubia-website in name...
+#  2017/02/26 16:54:47 Response status: 201 Created
+
+### k8s-website-controller-18.4 ###
+# Is the first controller code repo.
